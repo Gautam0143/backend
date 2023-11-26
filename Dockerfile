@@ -16,7 +16,7 @@ RUN mvn package -DskipTests
 
 
 # Copy the JAR file
-COPY target/*.jar app.jar
-
+COPY target/your-app-version.jar app.jar
 ENTRYPOINT ["java", "-jar", "/app.jar"]
+
 EXPOSE 8080
