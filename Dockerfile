@@ -1,5 +1,4 @@
 FROM eclipse-temurin:17-jdk-alpine
-VOLUME /tmp
 WORKDIR /app
 
 # Install Maven
@@ -14,9 +13,8 @@ COPY . .
 # Build the project
 RUN mvn package -DskipTests
 
-
 # Copy the JAR file
-COPY --chown=your-user:your-group target/*.jar app.jar
+COPY --chown=root:root target/*.jar app.jar
 
 ENTRYPOINT ["java", "-jar", "/app.jar"]
 
