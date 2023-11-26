@@ -1,9 +1,21 @@
 FROM eclipse-temurin:17-jdk-alpine
 VOLUME /tmp
 WORKDIR /app
-RUN ls -l /app   # Debugging statement
+
+# Install Maven
+RUN apk --no-cache add maven
+
+# Debugging statement
+RUN ls -l /app
+
+# Copy the source code
 COPY . .
-RUN mvn package  # Assuming you are using Maven, adjust for other build tools
+
+# Build the project
+RUN mvn package
+
+# Copy the JAR file
 COPY target/*.jar app.jar
+
 ENTRYPOINT ["java", "-jar", "/app.jar"]
 EXPOSE 8080
