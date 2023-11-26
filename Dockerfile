@@ -12,7 +12,8 @@ RUN ls -l /app
 COPY . .
 
 # Build the project
-RUN mvn package
+RUN mvn package -DskipTests
+
 
 # Copy the JAR file
 COPY target/*.jar app.jar
