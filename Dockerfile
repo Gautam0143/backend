@@ -14,7 +14,8 @@ COPY . .
 RUN mvn package -DskipTests
 
 # Copy the JAR file
-COPY --chown=root:root target/*.jar app.jar
+COPY --chown=root:root target/*.jar /app/target/app.jar
+
 
 ENTRYPOINT ["java", "-jar", "/app.jar"]
 
